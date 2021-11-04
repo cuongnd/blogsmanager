@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('account', 'UserController@edit')->name('users.edit');
         Route::get('my-posts', 'UserController@my_posts')->name('my_posts');
         Route::get('edit-my-post/{id}', 'PostController@edit')->name('edit-my-post');
+        Route::put('update-my-post', 'PostController@update')->name('update-my-post');
         Route::match(['put', 'patch'], 'account', 'UserController@update')->name('users.update');
 
         Route::get('password', 'UserPasswordController@edit')->name('users.password');
