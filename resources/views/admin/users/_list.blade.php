@@ -13,7 +13,7 @@
             <tr>
                 <td>{{ link_to_route('admin.users.edit', $user->fullname, $user) }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ humanize_date($user->registered_at, 'd/m/Y H:i:s') }}</td>
+                <td></td>
                 <td>
                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
