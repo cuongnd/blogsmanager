@@ -59,11 +59,17 @@ class PostController extends Controller
      */
     public function store(PostsRequest $request): RedirectResponse
     {
-        $data=$request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']);
+
+        $user = auth()->user();
+        if($user->isEditor()){
+            $data=$request->only(['title', 'content', 'posted_at', 'thumbnail_id']);
+            $data['author_id']=$user->id;
+        }else{
+            $data=$request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']);
+
+        }
         $data['slug'] = $data['title'].'-'.random_int(100,2000);
-
         $post = Post::create($data);
-
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
     }
 
@@ -72,8 +78,12 @@ class PostController extends Controller
      */
     public function update(PostsRequest $request, Post $post): RedirectResponse
     {
-
-        $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
+        $data=$request->only(['title', 'content', 'posted_at', 'author_id']);
+        $user = auth()->user();
+        if($user->isEditor()){
+            $data['author_id']=$user->id;
+        }
+        $post->update($data);
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 
