@@ -17,7 +17,8 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        $user=User::authors();
+        $user = auth()->user();
+
         if($user->isAdmin())
         {
             return view('admin.posts.index', [

@@ -13,6 +13,8 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, string $role)
     {
 
+
+
         return $next($request);
     }
 }
