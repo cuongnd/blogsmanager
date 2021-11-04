@@ -16,6 +16,20 @@ class UserController extends Controller
      */
     public function show(Request $request, User $user): View
     {
+
+        return view('users.show', [
+            'user' => $user,
+            'posts_count' => $user->posts()->count(),
+            'posts' => $user->posts()->latest()->limit(5)->get(),
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function my_posts(Request $request, User $user): View
+    {
+
         return view('users.show', [
             'user' => $user,
             'posts_count' => $user->posts()->count(),

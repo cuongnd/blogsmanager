@@ -3,6 +3,7 @@
 return [
   'profile' => 'My profile',
   'public_profile' => 'My public profile',
+  'my_posts' => 'My posts',
   'settings' => 'Settings',
   'edit' => 'Edit profile',
   'show' => 'Show profile',
