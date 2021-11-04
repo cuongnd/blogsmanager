@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at', 'api_token'
+        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at'
     ];
 
     /**
@@ -118,21 +118,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class, 'author_id');
     }
 
-    /**
-     * Return the user's comments
-     */
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class, 'author_id');
-    }
-
-    /**
-     * Return the user's likes
-     */
-    public function likes(): HasMany
-    {
-        return $this->hasMany(Like::class, 'author_id');
-    }
 
     /**
      * Return the user's roles

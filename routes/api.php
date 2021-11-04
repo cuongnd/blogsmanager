@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->namespace('Api\V1')->group(function () {
-    Route::middleware(['auth:api', 'verified'])->group(function () {
-        // Comments
-        Route::apiResource('comments', 'CommentController')->only('destroy');
-        Route::apiResource('posts.comments', 'PostCommentController')->only('store');
-
+    Route::middleware(['auth:api'])->group(function () {
         // Posts
         Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
         Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
@@ -26,17 +22,10 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
         // Users
         Route::apiResource('users', 'UserController')->only('update');
-
-        // Media
-        Route::apiResource('media', 'MediaController')->only(['store', 'destroy']);
     });
 
     Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
 
-    // Comments
-    Route::apiResource('posts.comments', 'PostCommentController')->only('index');
-    Route::apiResource('users.comments', 'UserCommentController')->only('index');
-    Route::apiResource('comments', 'CommentController')->only(['index', 'show']);
 
     // Posts
     Route::apiResource('posts', 'PostController')->only(['index', 'show']);
@@ -44,7 +33,4 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
     // Users
     Route::apiResource('users', 'UserController')->only(['index', 'show']);
-
-    // Media
-    Route::apiResource('media', 'MediaController')->only('index');
 });
