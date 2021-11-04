@@ -17,9 +17,17 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        return view('admin.posts.index', [
-            'posts' => Post::latest()->paginate(50)
-        ]);
+        $user=User::authors();
+        if($user->isAdmin())
+        {
+            return view('admin.posts.index', [
+                'posts' => Post::latest()->paginate(50)
+            ]);
+        }else{
+            return view('admin.posts.index', [
+                'posts' => Post::where('author_id', $user->id)->paginate(50)
+            ]);
+        }
     }
 
     /**
