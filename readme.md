@@ -1,4 +1,12 @@
-# This Laravel 8.0 demo blogs manager
+# This Laravel 8.0 demo blogs manager, php 7.4
+# Link demo https://blogsmanager.adayroi.online/
+# Acount admin 
+# email: cuongnd@gmail.com
+# password: 4nak1n
+
+# User basic
+#email : nguyen@gmail.com
+#password : 123456 
 
 This projects allows users can login or resgister
 
