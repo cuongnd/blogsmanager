@@ -25,8 +25,10 @@ class PostController extends Controller
                 'posts' => Post::latest()->paginate(50)
             ]);
         }else{
+            $posts=Post::where('author_id', $user->id)->paginate(50);
+
             return view('admin.posts.index', [
-                'posts' => Post::where('author_id', $user->id)->paginate(50)
+                'posts' => $posts
             ]);
         }
     }
