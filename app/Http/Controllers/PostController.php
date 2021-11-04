@@ -34,8 +34,9 @@ class PostController extends Controller
     /**
      * Display the specified resource edit form.
      */
-    public function edit(Post $post): View
+    public function edit(Request $request,$title,$id): View
     {
+         $post=Post::find($id);
         return view('admin.posts.edit', [
             'post' => $post,
             'users' => User::authors()->pluck('name', 'id'),
