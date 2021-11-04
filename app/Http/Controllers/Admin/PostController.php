@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
-use App\Models\MediaLibrary;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +30,6 @@ class PostController extends Controller
         return view('admin.posts.edit', [
             'post' => $post,
             'users' => User::authors()->pluck('name', 'id'),
-            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
         ]);
     }
 
@@ -42,7 +40,6 @@ class PostController extends Controller
     {
         return view('admin.posts.create', [
             'users' => User::authors()->pluck('name', 'id'),
-            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
         ]);
     }
 

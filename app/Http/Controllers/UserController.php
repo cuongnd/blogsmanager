@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersRequest;
+use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -27,13 +28,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function my_posts(Request $request, User $user): View
+    public function my_posts(Request $request): View
     {
-
-        return view('users.show', [
+        $user = auth()->user();
+        return view('myposts.index', [
             'user' => $user,
-            'posts_count' => $user->posts()->count(),
-            'posts' => $user->posts()->latest()->limit(5)->get(),
+            'posts' => Post::latest()->paginate(50)
         ]);
     }
 
