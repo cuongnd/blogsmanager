@@ -6,7 +6,7 @@
 
 # User basic
 # email : nguyen@gmail.com
-#password : 123456 
+# password : 123456 
 
 This projects allows users can login or resgister
 
