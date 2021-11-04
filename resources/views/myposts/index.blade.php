@@ -8,5 +8,5 @@
       </a>
     </div>
 
-    @include ('admin/posts/_list')
+    @include ('myposts/_list')
 @endsection

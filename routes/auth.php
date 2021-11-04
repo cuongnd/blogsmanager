@@ -16,6 +16,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('settings')->group(function () {
         Route::get('account', 'UserController@edit')->name('users.edit');
         Route::get('my-posts', 'UserController@my_posts')->name('users.my_posts');
+        Route::resource('my-posts', 'PostController');
         Route::match(['put', 'patch'], 'account', 'UserController@update')->name('users.update');
 
         Route::get('password', 'UserPasswordController@edit')->name('users.password');

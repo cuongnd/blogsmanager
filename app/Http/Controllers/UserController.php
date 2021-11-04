@@ -30,6 +30,7 @@ class UserController extends Controller
      */
     public function my_posts(Request $request): View
     {
+
         $user = auth()->user();
         return view('myposts.index', [
             'user' => $user,
